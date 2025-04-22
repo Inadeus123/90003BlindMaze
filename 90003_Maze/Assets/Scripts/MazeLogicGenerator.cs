@@ -1,67 +1,73 @@
+
 using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class MazeLogicGenerator : MonoBehaviour
+/// <summary>
+/// Full‑stack maze generator: ⭐ 纯逻辑生成 + 起终点计算 + 调试路径可视化 + 可视化生成(自定义Prefab、Pivot在左下)
+/// 挂载空物体 → 在 Inspector 填 row/column、cellSize、wall/floor prefab 等 → 运行即可
+/// </summary>
+public class MazeGenerator : MonoBehaviour
 {
-    public int row = 10, column = 10; // 可调参数
+    [Header("Maze Size")]
+    public int row = 10;
+    public int column = 10;
+    [Header("Prefab & Size")]
+    public GameObject WallPrefab;   // 墙体 Prefab（锚点在左下角，长度 = cellSize）
+    //public GameObject FloorPrefab;  // 地面 Prefab（1:1 占格）
+    public GameObject StartMarker;  // 起点标记（可空）
+    public GameObject EndMarker;    // 终点标记（可空）
+    public float cellSize = 5f;     // 每个格子边长 ( = 墙体长度 )
 
+    [Header("Debug")]
+    public bool drawSolution = true;      // 是否绘制红线调试路径
+
+    #region DATA STRUCTURE
     public class Cell
     {
         public bool Visited;
-        public bool E, S, W, N; // 四个方向通路
-
-        public Cell()
-        {
-            Visited = false;
-            E = S = W = N = false;
-        }
+        public bool N, E, S, W; // 四向通道标记
     }
-
     private Cell[] maze;
-    private Stack<Tuple<int, int>> stack = new Stack<Tuple<int, int>>();
+    private Tuple<int, int> start = Tuple.Create(0, 0);
+    private Tuple<int, int> end;
+    #endregion
+
     private System.Random rnd = new System.Random();
 
-    public Tuple<int, int> start = Tuple.Create(0, 0);
-    public Tuple<int, int> end;
-
+    #region UNITY
     void Start()
     {
         GenerateMaze();
+        BuildVisual();
+        if (drawSolution) DrawSolutionPath();
     }
+    #endregion
 
+    #region MAZE LOGIC （Recursive Backtracker）
     void GenerateMaze()
     {
+        // 初始化单元格
         maze = new Cell[row * column];
-        for (int i = 0; i < maze.Length; i++)
+        for (int i = 0; i < maze.Length; i++) maze[i] = new Cell();
+
+        // 栈回溯生成
+        Stack<Tuple<int, int>> stack = new Stack<Tuple<int, int>>();
+        stack.Push(start);
+        maze[Index(start)].Visited = true;
+        int visited = 1;
+
+        while (visited < maze.Length)
         {
-            maze[i] = new Cell();
-        }
-
-        int x = start.Item1;
-        int y = start.Item2;
-        stack.Push(Tuple.Create(x, y));
-        maze[GetIndex(x, y)].Visited = true;
-
-        while (stack.Count > 0)
-        {
-            var current = stack.Peek();
-            var neighbors = GetUnvisitedNeighbors(current.Item1, current.Item2);
-
-            if (neighbors.Count > 0)
+            var cur = stack.Peek();
+            var neigh = GetUnvisitedNeighbors(cur);
+            if (neigh.Count > 0)
             {
-                var next = neighbors[rnd.Next(neighbors.Count)];
-
-                int dx = next.Item1 - current.Item1;
-                int dy = next.Item2 - current.Item2;
-
-                if (dx == 1) { maze[GetIndex(current.Item1, current.Item2)].E = true; maze[GetIndex(next.Item1, next.Item2)].W = true; }
-                else if (dx == -1) { maze[GetIndex(current.Item1, current.Item2)].W = true; maze[GetIndex(next.Item1, next.Item2)].E = true; }
-                else if (dy == 1) { maze[GetIndex(current.Item1, current.Item2)].S = true; maze[GetIndex(next.Item1, next.Item2)].N = true; }
-                else if (dy == -1) { maze[GetIndex(current.Item1, current.Item2)].N = true; maze[GetIndex(next.Item1, next.Item2)].S = true; }
-
-                maze[GetIndex(next.Item1, next.Item2)].Visited = true;
+                var next = neigh[rnd.Next(neigh.Count)];
+                CarvePassage(cur, next);
+                maze[Index(next)].Visited = true;
                 stack.Push(next);
+                visited++;
             }
             else
             {
@@ -69,83 +75,150 @@ public class MazeLogicGenerator : MonoBehaviour
             }
         }
 
-        // 设置终点为离起点最远的点（简单的 BFS）
-        end = FindFarthestCellFrom(start);
-        Debug.Log("Maze generated. Start: " + start + " End: " + end);
+        end = FindFarthestCell(start);
     }
 
-    int GetIndex(int x, int y)
+    List<Tuple<int, int>> GetUnvisitedNeighbors(Tuple<int, int> c)
     {
-        return y * row + x;
+        List<Tuple<int, int>> list = new List<Tuple<int, int>>();
+        int x = c.Item1, y = c.Item2;
+        if (y > 0 && !maze[Index(x, y - 1)].Visited) list.Add(Tuple.Create(x, y - 1));
+        if (x < row - 1 && !maze[Index(x + 1, y)].Visited) list.Add(Tuple.Create(x + 1, y));
+        if (y < column - 1 && !maze[Index(x, y + 1)].Visited) list.Add(Tuple.Create(x, y + 1));
+        if (x > 0 && !maze[Index(x - 1, y)].Visited) list.Add(Tuple.Create(x - 1, y));
+        return list;
     }
 
-    List<Tuple<int, int>> GetUnvisitedNeighbors(int x, int y)
+    void CarvePassage(Tuple<int, int> a, Tuple<int, int> b)
     {
-        List<Tuple<int, int>> neighbors = new List<Tuple<int, int>>();
-
-        if (x > 0 && !maze[GetIndex(x - 1, y)].Visited) neighbors.Add(Tuple.Create(x - 1, y));
-        if (x < row - 1 && !maze[GetIndex(x + 1, y)].Visited) neighbors.Add(Tuple.Create(x + 1, y));
-        if (y > 0 && !maze[GetIndex(x, y - 1)].Visited) neighbors.Add(Tuple.Create(x, y - 1));
-        if (y < column - 1 && !maze[GetIndex(x, y + 1)].Visited) neighbors.Add(Tuple.Create(x, y + 1));
-
-        return neighbors;
+        int ax = a.Item1, ay = a.Item2;
+        int bx = b.Item1, by = b.Item2;
+        if (bx == ax && by == ay - 1) { maze[Index(a)].N = maze[Index(b)].S = true; }
+        else if (bx == ax + 1 && by == ay) { maze[Index(a)].E = maze[Index(b)].W = true; }
+        else if (bx == ax && by == ay + 1) { maze[Index(a)].S = maze[Index(b)].N = true; }
+        else if (bx == ax - 1 && by == ay) { maze[Index(a)].W = maze[Index(b)].E = true; }
     }
 
-    Tuple<int, int> FindFarthestCellFrom(Tuple<int, int> startCell)
+    Tuple<int, int> FindFarthestCell(Tuple<int, int> origin)
     {
-        int[,] distances = new int[row, column];
-        bool[,] visited = new bool[row, column];
         Queue<Tuple<int, int>> q = new Queue<Tuple<int, int>>();
-        q.Enqueue(startCell);
-        visited[startCell.Item1, startCell.Item2] = true;
-
-        Tuple<int, int> farthest = startCell;
-        int maxDist = 0;
-
+        bool[,] vis = new bool[row, column];
+        int[,] dist = new int[row, column];
+        q.Enqueue(origin);
+        vis[origin.Item1, origin.Item2] = true;
+        Tuple<int, int> far = origin;
         while (q.Count > 0)
         {
-            var current = q.Dequeue();
-            int x = current.Item1;
-            int y = current.Item2;
-
-            foreach (var dir in GetConnectedNeighbors(x, y))
+            var cur = q.Dequeue();
+            foreach (var n in GetConnectedNeighbors(cur))
             {
-                int nx = dir.Item1;
-                int ny = dir.Item2;
+                if (vis[n.Item1, n.Item2]) continue;
+                vis[n.Item1, n.Item2] = true;
+                dist[n.Item1, n.Item2] = dist[cur.Item1, cur.Item2] + 1;
+                if (dist[n.Item1, n.Item2] > dist[far.Item1, far.Item2]) far = n;
+                q.Enqueue(n);
+            }
+        }
+        return far;
+    }
 
-                if (!visited[nx, ny])
-                {
-                    visited[nx, ny] = true;
-                    distances[nx, ny] = distances[x, y] + 1;
-                    if (distances[nx, ny] > maxDist)
-                    {
-                        maxDist = distances[nx, ny];
-                        farthest = Tuple.Create(nx, ny);
-                    }
-                    q.Enqueue(Tuple.Create(nx, ny));
-                }
+    List<Tuple<int, int>> GetConnectedNeighbors(Tuple<int, int> c)
+    {
+        List<Tuple<int, int>> list = new List<Tuple<int, int>>();
+        int x = c.Item1, y = c.Item2;
+        Cell cell = maze[Index(c)];
+        if (cell.N) list.Add(Tuple.Create(x, y - 1));
+        if (cell.E) list.Add(Tuple.Create(x + 1, y));
+        if (cell.S) list.Add(Tuple.Create(x, y + 1));
+        if (cell.W) list.Add(Tuple.Create(x - 1, y));
+        return list;
+    }
+
+    int Index(int x, int y) => y * row + x;
+    int Index(Tuple<int, int> t) => t.Item2 * row + t.Item1;
+    #endregion
+
+    #region VISUALISE
+    void BuildVisual()
+    {
+        Vector3 mazeOffset = new Vector3(0, 0, -cellSize);  // ↓往下挪一个格
+        foreach (Transform c in transform) Destroy(c.gameObject);
+
+        // 内部格子：只画南 & 西
+        for (int x = 0; x < row; x++)
+        {
+            for (int y = 0; y < column; y++)
+            {
+                Vector3 basePos = new Vector3(x * cellSize, 0, y * cellSize) - mazeOffset;
+                /*if (FloorPrefab)
+                    Instantiate(FloorPrefab, basePos + new Vector3(cellSize / 2, 0, cellSize / 2),
+                        Quaternion.identity, transform);
+                        */
+
+                Cell cell = maze[Index(x, y)];
+
+                // 只画西 & 南（防止重复）
+                if (!cell.W)
+                    Instantiate(WallPrefab, basePos, Quaternion.Euler(0, 90, 0), transform);
+                if (!cell.S)
+                    Instantiate(WallPrefab, basePos, Quaternion.identity, transform);
+                if (y == 0)
+                    Instantiate(WallPrefab, basePos - new Vector3(0, 0, cellSize), Quaternion.identity, transform);
+                // 最外圈：东 & 北 另外补
+                if (x == row - 1 && !cell.E)
+                    Instantiate(WallPrefab, basePos + new Vector3(cellSize, 0, 0),
+                        Quaternion.Euler(0, 90, 0), transform);
+                if (y == column - 1 && !cell.N)
+                    Instantiate(WallPrefab, basePos + new Vector3(0, 0, cellSize),
+                        Quaternion.identity, transform);
             }
         }
 
-        return farthest;
+        // 起止标记
+        if (StartMarker)
+            Instantiate(StartMarker, new Vector3(start.Item1 * cellSize + cellSize / 2, 0.2f,
+                start.Item2 * cellSize + cellSize / 2), Quaternion.identity, transform);
+        if (EndMarker)
+            Instantiate(EndMarker, new Vector3(end.Item1 * cellSize + cellSize / 2, 0.2f,
+                end.Item2 * cellSize + cellSize / 2), Quaternion.identity, transform);
     }
 
-    List<Tuple<int, int>> GetConnectedNeighbors(int x, int y)
+    #endregion
+
+    #region DEBUG PATH
+    void DrawSolutionPath()
     {
-        List<Tuple<int, int>> connected = new List<Tuple<int, int>>();
-        Cell c = maze[GetIndex(x, y)];
-
-        if (c.N && y > 0) connected.Add(Tuple.Create(x, y - 1));
-        if (c.E && x < row - 1) connected.Add(Tuple.Create(x + 1, y));
-        if (c.S && y < column - 1) connected.Add(Tuple.Create(x, y + 1));
-        if (c.W && x > 0) connected.Add(Tuple.Create(x - 1, y));
-
-        return connected;
+        var path = FindPath(start, end);
+        for (int i = 0; i < path.Count - 1; i++)
+        {
+            Vector3 a = new Vector3(path[i].Item1 * cellSize + cellSize / 2, 1f, path[i].Item2 * cellSize + cellSize / 2);
+            Vector3 b = new Vector3(path[i + 1].Item1 * cellSize + cellSize / 2, 1f, path[i + 1].Item2 * cellSize + cellSize / 2);
+            Debug.DrawLine(a, b, Color.red, 60f); // 显示 60 秒
+        }
     }
 
-    // 你可以添加一个公开函数暴露 maze，用于生成自定义 prefab 可视化
-    public Cell[] GetMazeData()
+    List<Tuple<int, int>> FindPath(Tuple<int, int> a, Tuple<int, int> b)
     {
-        return maze;
+        // 简单 BFS 路径返回
+        Queue<Tuple<int, int>> q = new Queue<Tuple<int, int>>();
+        Dictionary<Tuple<int, int>, Tuple<int, int>> prev = new Dictionary<Tuple<int, int>, Tuple<int, int>>();
+        q.Enqueue(a);
+        prev[a] = a;
+        while (q.Count > 0)
+        {
+            var cur = q.Dequeue();
+            if (cur.Equals(b)) break;
+            foreach (var n in GetConnectedNeighbors(cur))
+            {
+                if (!prev.ContainsKey(n)) { prev[n] = cur; q.Enqueue(n); }
+            }
+        }
+        List<Tuple<int, int>> path = new List<Tuple<int, int>>();
+        var step = b;
+        while (!step.Equals(a)) { path.Add(step); step = prev[step]; }
+        path.Add(a);
+        path.Reverse();
+        return path;
     }
+    #endregion
 }
