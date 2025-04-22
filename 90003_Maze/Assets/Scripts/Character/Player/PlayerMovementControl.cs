@@ -60,11 +60,6 @@ public class PlayerMovementControl : CharacterMovementControlBase
        // Debug.Log("HasInput:" + GameInputManager.MainInstance.Movement);
         if (_animator.GetBool(AnimationID.HasInputID))
         {
-            if (GameInputManager.MainInstance.Run)
-            {
-                _animator.SetBool(AnimationID.IsRunningID, true);
-            }
-            
            _animator.SetFloat(AnimationID.MovementID,_animator.GetBool(AnimationID.IsRunningID) ? 2f : GameInputManager.MainInstance.Movement.sqrMagnitude, 0.25f, Time.deltaTime);
         }
         else
