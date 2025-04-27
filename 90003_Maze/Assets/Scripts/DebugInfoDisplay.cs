@@ -23,7 +23,7 @@ public class DebugInfoDisplay : Singleton<DebugInfoDisplay>
     private void OnGUI()
     {
         string debugText = "";
-        debugText += $"Is Player Running: {IsPlayerRunning}\n";
+        //debugText += $"Is Player Running: {IsPlayerRunning}\n";
         debugText += $"Has Input: {HasInput}\n";
         debugText += $"Player Movement Input: {PlayerMovementInput}\n";
         debugText += $"Player Rotation Angle: {PlayerRotationAngle}\n";

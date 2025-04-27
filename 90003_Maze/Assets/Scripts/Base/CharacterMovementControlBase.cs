@@ -17,11 +17,11 @@ public abstract class CharacterMovementControlBase : MonoBehaviour
     
     //重力
     protected readonly float CharacterGravity = -9.81f;
-    protected float _characterVerticalVelocity;//用来更新角色Y轴的速度，可以应用于重力和跳跃高度，或者受击反馈
-    protected float _fallOutDeltaTime;//用来判断角色是否在高低差过小的情况下播放跌落动画
-    protected float _fallOutTime = 0.15f; //常量，高低差阈值，防止在高低差过小的情况下播放跌落动画
-    protected readonly float _characterVerticalMaxVelocity= 54f; //最大角色下落速度
-    protected Vector3 _characterVerticalDirection; //角色的Y轴方向。因为是通过CharacterController来控制角色的，所以把_characterVerticalVelocity赋值给这个变量来控制角色的Y轴方向
+    protected float _characterVerticalVelocity;
+    protected float _fallOutDeltaTime;
+    protected float _fallOutTime = 0.15f;
+    protected readonly float _characterVerticalMaxVelocity= 54f;
+    protected Vector3 _characterVerticalDirection;
     protected bool _isEnableGravity;
     
     protected virtual void Awake()

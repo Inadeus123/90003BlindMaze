@@ -3,24 +3,19 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-/// <summary>
-/// Full‑stack maze generator: ⭐ 纯逻辑生成 + 起终点计算 + 调试路径可视化 + 可视化生成(自定义Prefab、Pivot在左下)
-/// 挂载空物体 → 在 Inspector 填 row/column、cellSize、wall/floor prefab 等 → 运行即可
-/// </summary>
 public class MazeGenerator : MonoBehaviour
 {
     [Header("Maze Size")]
     public int row = 10;
     public int column = 10;
     [Header("Prefab & Size")]
-    public GameObject WallPrefab;   // 墙体 Prefab（锚点在左下角，长度 = cellSize）
-    //public GameObject FloorPrefab;  // 地面 Prefab（1:1 占格）
-    public GameObject StartMarker;  // 起点标记（可空）
-    public GameObject EndMarker;    // 终点标记（可空）
-    public float cellSize = 5f;     // 每个格子边长 ( = 墙体长度 )
+    public GameObject WallPrefab;
+    public GameObject StartPositionPrefab; 
+    public GameObject EndMarker; 
+    public float cellSize = 5f; 
 
     [Header("Debug")]
-    public bool drawSolution = true;      // 是否绘制红线调试路径
+    public bool drawSolution = true; // 是否绘制路径
 
     #region DATA STRUCTURE
     public class Cell
@@ -175,12 +170,17 @@ public class MazeGenerator : MonoBehaviour
         }
 
         // 起止标记
-        if (StartMarker)
-            Instantiate(StartMarker, new Vector3(start.Item1 * cellSize + cellSize / 2, 0.2f,
-                start.Item2 * cellSize + cellSize / 2), Quaternion.identity, transform);
+        //StartPositionPrefab = Resources.Load<GameObject>("Prefabs/Player"); 
+        StartPositionPrefab = GameObject.Find("Player");
+        StartPositionPrefab.transform.position = new Vector3(start.Item1 * cellSize + cellSize / 2, 0.2f,
+            start.Item2 * cellSize + cellSize / 2);
+        /*Instantiate(StartPositionPrefab, new Vector3(start.Item1 * cellSize + cellSize / 2, 0.2f,
+            start.Item2 * cellSize + cellSize / 2), Quaternion.identity, transform);*/
         if (EndMarker)
             Instantiate(EndMarker, new Vector3(end.Item1 * cellSize + cellSize / 2, 0.2f,
                 end.Item2 * cellSize + cellSize / 2), Quaternion.identity, transform);
+        
+        
     }
 
     #endregion
