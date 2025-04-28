@@ -9,13 +9,14 @@ public class DebugInfoDisplay : Singleton<DebugInfoDisplay>
     public bool HasInput;
     public float PlayerRotationAngle;
     private GUIStyle guiStyle;
+    
 
     protected override void Awake()
     {
         base.Awake();
         guiStyle = new GUIStyle
         {
-            fontSize = 50,
+            fontSize = 25,
             normal = { textColor = Color.green }
         };
     }

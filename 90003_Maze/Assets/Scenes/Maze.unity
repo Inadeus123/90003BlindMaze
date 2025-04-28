@@ -269,8 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764debbd7aede1d45a5065cd5e008172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  row: 6
-  column: 6
+  row: 5
+  column: 5
   WallPrefab: {fileID: 1681474978969964, guid: bdea1664cba80d84c8eb732c560e32f0, type: 3}
   StartPositionPrefab: {fileID: 0}
   EndMarker: {fileID: 1422041704257451215, guid: 57232ada7cfcb3346b2fd5c336f0c284,
