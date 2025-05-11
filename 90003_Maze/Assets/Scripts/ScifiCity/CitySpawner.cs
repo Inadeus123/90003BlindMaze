@@ -49,31 +49,62 @@ public class CitySpawner : MonoBehaviour
         }
     }
 
+/*void SpawnNextSegment()
+{
+// 左侧建筑的位置：在飞车左侧固定偏移 laneHalfWidth
+Vector3 leftPos = new Vector3(-laneHalfWidth, 0f, spawnZPosition);
+// 右侧建筑的位置：在飞车右侧固定偏移 laneHalfWidth
+Vector3 rightPos = new Vector3(laneHalfWidth, 0f, spawnZPosition);
+
+// 从预制体列表随机选择一种建筑
+GameObject leftPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
+GameObject rightPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
+
+// 实例化左侧建筑
+GameObject leftBuilding = Instantiate(leftPrefab, leftPos, Quaternion.identity);
+// 实例化右侧建筑
+GameObject rightBuilding = Instantiate(rightPrefab, rightPos, Quaternion.identity);
+
+// 可选：对生成的建筑进行随机旋转朝向，使城市更不规则
+leftBuilding.transform.Rotate(0f, Random.Range(0, 4) * 90f, 0f);
+rightBuilding.transform.Rotate(0f, Random.Range(0, 4) * 90f, 0f);
+
+// 将新建的建筑加入队列尾部
+spawnedBuildings.Enqueue(leftBuilding);
+spawnedBuildings.Enqueue(rightBuilding);
+
+// 更新下次生成的位置，沿Z轴前移
+spawnZPosition += distanceBetween;
+}*/
+
     void SpawnNextSegment()
     {
-        // 左侧建筑的位置：在飞车左侧固定偏移 laneHalfWidth
-        Vector3 leftPos = new Vector3(-laneHalfWidth, 0f, spawnZPosition);
-        // 右侧建筑的位置：在飞车右侧固定偏移 laneHalfWidth
-        Vector3 rightPos = new Vector3(laneHalfWidth, 0f, spawnZPosition);
+        int countPerSide = Random.Range(2, 4);            // 每侧 2~3 栋
+        float zBase = spawnZPosition;
 
-        // 从预制体列表随机选择一种建筑
-        GameObject leftPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
-        GameObject rightPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
-
-        // 实例化左侧建筑
-        GameObject leftBuilding = Instantiate(leftPrefab, leftPos, Quaternion.identity);
-        // 实例化右侧建筑
-        GameObject rightBuilding = Instantiate(rightPrefab, rightPos, Quaternion.identity);
-
-        // 可选：对生成的建筑进行随机旋转朝向，使城市更不规则
-        leftBuilding.transform.Rotate(0f, Random.Range(0, 4) * 90f, 0f);
-        rightBuilding.transform.Rotate(0f, Random.Range(0, 4) * 90f, 0f);
-
-        // 将新建的建筑加入队列尾部
-        spawnedBuildings.Enqueue(leftBuilding);
-        spawnedBuildings.Enqueue(rightBuilding);
-
-        // 更新下次生成的位置，沿Z轴前移
-        spawnZPosition += distanceBetween;
+        for (int i = 0; i < countPerSide; i++)
+        {
+            float zOffset = Random.Range(-5f, 5f);        // 同段内部前后错开
+            float yScale  = Random.Range(0.8f, 1.4f);     // 高度随机
+            // 左侧
+            SpawnOneBuilding(new Vector3(-laneHalfWidth + Random.Range(-3f,3f),
+                0f,
+                zBase + zOffset), yScale);
+            // 右侧（镜像）
+            SpawnOneBuilding(new Vector3(+laneHalfWidth + Random.Range(-3f,3f),
+                0f,
+                zBase + zOffset), yScale);
+            zBase += 5f;                                   // 同侧再往后一点
+        }
+        spawnZPosition += distanceBetween;                 // 全段推进
     }
+
+    void SpawnOneBuilding(Vector3 pos, float scaleY)
+    {
+        GameObject prefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
+        var go = Instantiate(prefab, pos, Quaternion.Euler(0, Random.Range(0,4)*90, 0));
+        go.transform.localScale = new Vector3(1f, scaleY, 1f); // 改变高度但保持底面积
+        spawnedBuildings.Enqueue(go);
+    }
+
 }

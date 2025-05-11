@@ -114,6 +114,78 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""FlightControls"",
+            ""id"": ""2e5752e1-074f-4981-851b-3f4d533c9af1"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""da5be8c2-9681-438e-a152-b598b2e8ac43"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""56a996f4-94fa-4ea0-b4de-21b804fd7b08"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""4dfcbda8-480d-4aab-ba50-63fb74d2715e"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""31d26dff-285b-42e6-96b4-37b4a10e3984"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""d973d86c-f2f3-47e2-97e1-f046c95a3872"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e9aed013-3d4c-4b41-a6f9-49023bf0fe91"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -183,6 +255,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_GameInput = asset.FindActionMap("GameInput", throwIfNotFound: true);
         m_GameInput_Movement = m_GameInput.FindAction("Movement", throwIfNotFound: true);
         m_GameInput_CameraLook = m_GameInput.FindAction("CameraLook", throwIfNotFound: true);
+        // FlightControls
+        m_FlightControls = asset.FindActionMap("FlightControls", throwIfNotFound: true);
+        m_FlightControls_Move = m_FlightControls.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -294,6 +369,52 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public GameInputActions @GameInput => new GameInputActions(this);
+
+    // FlightControls
+    private readonly InputActionMap m_FlightControls;
+    private List<IFlightControlsActions> m_FlightControlsActionsCallbackInterfaces = new List<IFlightControlsActions>();
+    private readonly InputAction m_FlightControls_Move;
+    public struct FlightControlsActions
+    {
+        private @InputActions m_Wrapper;
+        public FlightControlsActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_FlightControls_Move;
+        public InputActionMap Get() { return m_Wrapper.m_FlightControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(FlightControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IFlightControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_FlightControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_FlightControlsActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+        }
+
+        private void UnregisterCallbacks(IFlightControlsActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+        }
+
+        public void RemoveCallbacks(IFlightControlsActions instance)
+        {
+            if (m_Wrapper.m_FlightControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IFlightControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_FlightControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_FlightControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public FlightControlsActions @FlightControls => new FlightControlsActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -343,5 +464,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnCameraLook(InputAction.CallbackContext context);
+    }
+    public interface IFlightControlsActions
+    {
+        void OnMove(InputAction.CallbackContext context);
     }
 }
