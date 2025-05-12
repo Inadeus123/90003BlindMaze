@@ -1,7 +1,8 @@
+
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;  // 新输入系统命名空间
-
+/*
 public class FlyingCarController : MonoBehaviour
 {
     [Header("飞车移动参数")]
@@ -16,7 +17,9 @@ public class FlyingCarController : MonoBehaviour
     private float yawDelta; // 根据左右输入，计算偏航旋转角度增量
     // 计算俯仰的目标角（累加，但限制范围）
     float targetPitch;
-    
+
+    float horInput, verInput;
+
 
     [Header("输入动作引用")]
     [SerializeField] public InputActionReference moveAction;  // 引用Input System配置的“Move”动作
@@ -52,7 +55,7 @@ public class FlyingCarController : MonoBehaviour
         // 1. 偏航旋转：绕世界Y轴旋转，实现左右转向
         // 根据左右输入，计算偏航旋转角度增量
         yawDelta = yawInput * yawSpeed * Time.deltaTime;
-        
+
 
         // 2. 俯仰旋转：绕本地X轴旋转，实现机头上下
         // 计算新的俯仰角增量（注意上按键应使机头抬起，即俯仰角减小，因此取负号）
@@ -63,9 +66,9 @@ public class FlyingCarController : MonoBehaviour
         targetPitch = Mathf.Clamp(targetPitch, -maxPitchAngle, maxPitchAngle);
         // 计算实际应用的增量（如果超出限制则会小于原delta）
         actualPitchDelta = targetPitch - currentPitch;
-        
 
-       
+
+
     }
 
     private void FixedUpdate()
@@ -79,5 +82,41 @@ public class FlyingCarController : MonoBehaviour
         // 3. 自动前进：每帧按照当前朝向向前移动
         Vector3 forwardMove = transform.forward * forwardSpeed * Time.deltaTime;
         transform.Translate(forwardMove, Space.World);
+    }
+}
+*/
+public class FlyingCarController : MonoBehaviour
+{
+    public float forwardSpeed = 20f;
+    public float horizontalSpeed = 8f;
+    public float verticalSpeed   = 6f;
+
+    float horInput, verInput;   // 由 MPUInput 传入
+    Rigidbody rb;
+
+    void Awake() => rb = GetComponent<Rigidbody>();
+
+    public void SetInput(float hor, float ver)
+    {
+        horInput = hor;    // [-1,1]
+        verInput = ver;
+    }
+
+    void FixedUpdate()
+    {
+        // 前进
+        Vector3 pos = rb.position + transform.forward * forwardSpeed * Time.fixedDeltaTime;
+
+        // 水平 & 垂直
+        pos += transform.right * horInput * horizontalSpeed * Time.fixedDeltaTime;
+        pos += transform.up    * verInput * verticalSpeed   * Time.fixedDeltaTime;
+
+        rb.MovePosition(pos);
+
+        // 让机头稍微倾斜
+        float bank = -horInput * 20f;        // 左右滚
+        float pitch = -verInput * 15f;       // 上下俯仰
+        Quaternion targetRot = Quaternion.Euler(pitch, 0f, bank);
+        //rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, 4f * Time.fixedDeltaTime));
     }
 }
