@@ -3,24 +3,32 @@ using System.IO.Ports;
 
 public class MPUInput : MonoBehaviour
 {
-    [Header("Serial")]
-    public string portName = "COM4";      // 改成实际端口
+    [Header("Serial Settings")]
+    public string portName = "/dev/tty.usbserial-564E0546631";
     public int baudRate = 115200;
 
     [Header("Mapping")]
-    public float maxPitchDeg = 20f;       // 前后倾 ±20° 对应满输入
-    public float maxRollDeg  = 20f;       // 左右倾
+    public float maxPitchDeg = 90f;
+    public float maxRollDeg = 90f;
 
-    public FlyingCarController car;       // 引用飞车脚本
+    public FlyingCarController car; 
 
     SerialPort sp;
 
     void Start()
     {
-        sp = new SerialPort(portName, baudRate);
-        sp.NewLine = "\r\n";      // ←改成 CRLF
-        sp.Open();
-        sp.ReadTimeout = 50;
+        try
+        {
+            sp = new SerialPort(portName, baudRate);
+            sp.NewLine = "\r\n";
+            sp.Open();
+            sp.ReadTimeout = 50;
+            Debug.Log($"[MPUInput] Serial port {portName} opened.");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"[MPUInput] Failed to open serial port: {e.Message}");
+        }
     }
 
     void Update()
@@ -29,7 +37,8 @@ public class MPUInput : MonoBehaviour
         {
             try
             {
-                string line = sp.ReadLine();   // 拿到一行完整帧
+                string line = sp.ReadLine();
+                Debug.Log("[MPUInput] Raw line: " + line);
                 ParseFrame(line);
             }
             catch (System.TimeoutException) { }
@@ -38,46 +47,52 @@ public class MPUInput : MonoBehaviour
 
     void ParseFrame(string s)
     {
-        // 格式: $P1234R-0567Y0012#
-        s = s.Trim();    // 防止意外空白
+        s = s.Trim();
         if (!s.StartsWith("$") || !s.EndsWith("#"))
         {
-            //Debug.Log("111111111");
-
+            Debug.LogWarning("[MPUInput] Invalid frame format: " + s);
             return;
         }
 
-        ;
         int pStart = s.IndexOf('P');
         int rStart = s.IndexOf('R');
         int yStart = s.IndexOf('Y');
-        if (pStart < 0 || rStart < 0 || yStart < 0) {
-            //Debug.Log("2222222222");
-
+        if (pStart < 0 || rStart < 0 || yStart < 0)
+        {
+            Debug.LogWarning("[MPUInput] Missing P/R/Y markers in: " + s);
             return;
-        };
+        }
 
-        int pitchVal = int.Parse(s.Substring(pStart+1, rStart-pStart-1));
-        int rollVal  = int.Parse(s.Substring(rStart+1, yStart-rStart-1));
-        
-        // yawVal 可选
-        // int yawVal   = int.Parse(s.Substring(yStart+1, s.Length-yStart-2));
+        try
+        {
+            int pitchVal = int.Parse(s.Substring(pStart + 1, rStart - pStart - 1));
+            int rollVal = int.Parse(s.Substring(rStart + 1, yStart - rStart - 1));
 
-        float pitchDeg = pitchVal / 100f;
-        float rollDeg  = rollVal  / 100f;
+            float pitchDeg = pitchVal / 100f;
+            float rollDeg = rollVal / 100f;
 
-        // 归一化成 [-1,1] 输入
-        //float verticalInput  = Mathf.Clamp((pitchDeg / maxPitchDeg)*10, -1f, 1f);
-        float horizontalInput= Mathf.Clamp((rollDeg  / maxRollDeg) *10, -1f, 1f);
+            float horizontalInput = Mathf.Clamp(rollDeg / maxRollDeg, -1f, 1f);
+            float verticalInput = Mathf.Clamp(pitchDeg / maxPitchDeg, -1f, 1f);
 
-        //Debug.Log("verticalInput"+verticalInput);
-        Debug.Log("horizontalInput"+horizontalInput);
-        // 丢给飞车控制器
-        car.SetInput(horizontalInput, 0);
+            Debug.Log($"[MPUInput] Parsed Pitch: {pitchDeg}°, Roll: {rollDeg}° => Input (H={horizontalInput}, V={verticalInput})");
+
+            if (car != null)
+                car.SetInput(horizontalInput, verticalInput);
+            else
+                Debug.LogWarning("[MPUInput] Car reference not assigned!");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("[MPUInput] Parse error: " + ex.Message);
+        }
     }
 
     void OnApplicationQuit()
     {
-        if (sp != null && sp.IsOpen) sp.Close();
+        if (sp != null && sp.IsOpen)
+        {
+            sp.Close();
+            Debug.Log("[MPUInput] Serial port closed.");
+        }
     }
 }
