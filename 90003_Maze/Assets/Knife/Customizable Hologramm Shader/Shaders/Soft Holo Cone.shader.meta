@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8b5e172994906a241b2937c4bc753a22
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170106
+  packageName: Sci Fi Hologram Shader
+  packageVersion: 1.1
+  assetPath: Assets/Knife/Customizable Hologramm Shader/Shaders/Soft Holo Cone.shader
+  uploadId: 522592

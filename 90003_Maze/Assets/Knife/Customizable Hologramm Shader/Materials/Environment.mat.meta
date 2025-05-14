@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4f9b2ee64acf33841b9e3118dfb1ea59
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170106
+  packageName: Sci Fi Hologram Shader
+  packageVersion: 1.1
+  assetPath: Assets/Knife/Customizable Hologramm Shader/Materials/Environment.mat
+  uploadId: 522592

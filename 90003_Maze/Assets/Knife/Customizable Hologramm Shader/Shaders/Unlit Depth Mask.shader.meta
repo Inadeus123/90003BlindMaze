@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a91b3c5c9591c734aa5ea3b3037f67fa
+timeCreated: 1496328687
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170106
+  packageName: Sci Fi Hologram Shader
+  packageVersion: 1.1
+  assetPath: Assets/Knife/Customizable Hologramm Shader/Shaders/Unlit Depth Mask.shader
+  uploadId: 522592

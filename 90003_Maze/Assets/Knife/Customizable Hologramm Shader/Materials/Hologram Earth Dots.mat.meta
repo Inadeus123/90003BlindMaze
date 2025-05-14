@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 25acab39904406d4b93f389c63e531bb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 170106
+  packageName: Sci Fi Hologram Shader
+  packageVersion: 1.1
+  assetPath: Assets/Knife/Customizable Hologramm Shader/Materials/Hologram Earth
+    Dots.mat
+  uploadId: 522592
