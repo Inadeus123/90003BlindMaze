@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tile
   - CameraTarget
+  - Car
   layers:
   - Default
   - TransparentFX
