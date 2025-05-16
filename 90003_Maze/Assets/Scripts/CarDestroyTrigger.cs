@@ -9,7 +9,7 @@ public class CarDestroyTrigger : MonoBehaviour
     {
         if (other.CompareTag("Car"))
         {
-            Debug.Log("Car destroyed");
+            //Debug.Log("Car destroyed");
             Destroy(other.gameObject);
         }
     }
