@@ -4,7 +4,7 @@ using System.IO.Ports;
 public class MPUInput : MonoBehaviour
 {
 	[Header("Serial Settings")]
-	public string portName = "/dev/tty.usbserial-564E0546631";
+	public string portName = "COM4";
 	public int baudRate = 115200;
  
 	[Header("Mapping")]
@@ -33,58 +33,34 @@ public class MPUInput : MonoBehaviour
  
 	void Update()
 	{
-    	if (sp != null && sp.IsOpen && sp.BytesToRead > 0)
-    	{
-        	try
-        	{
-            	string line = sp.ReadLine();
-            	Debug.Log("[MPUInput] Raw line: " + line);
-            	ParseFrame(line);
-        	}
-        	catch (System.TimeoutException) { }
-    	}
+		if (sp == null || !sp.IsOpen) return;
+
+		// ① 循环把缓冲区全部读完，只留下最后一行
+		string latestLine = null;
+		while (sp.BytesToRead > 0)
+		{
+			try      { latestLine = sp.ReadLine(); }
+			catch    { break; }      // 超时也跳出
+		}
+		if (string.IsNullOrEmpty(latestLine)) return;
+
+		ParseFrame(latestLine); 
 	}
  
 	void ParseFrame(string s)
 	{
-    	s = s.Trim();
-    	if (!s.StartsWith("$") || !s.EndsWith("#"))
-    	{
-        	Debug.LogWarning("[MPUInput] Invalid frame format: " + s);
-        	return;
-    	}
- 
-    	int pStart = s.IndexOf('P');
-    	int rStart = s.IndexOf('R');
-    	int yStart = s.IndexOf('Y');
-    	if (pStart < 0 || rStart < 0 || yStart < 0)
-    	{
-        	Debug.LogWarning("[MPUInput] Missing P/R/Y markers in: " + s);
-        	return;
-    	}
- 
-    	try
-    	{
-        	int pitchVal = int.Parse(s.Substring(pStart + 1, rStart - pStart - 1));
-        	int rollVal = int.Parse(s.Substring(rStart + 1, yStart - rStart - 1));
- 
-        	float pitchDeg = pitchVal / 100f;
-        	float rollDeg = rollVal / 100f;
- 
-        	float horizontalInput = Mathf.Clamp(rollDeg / maxRollDeg, -1f, 1f);
-        	float verticalInput = Mathf.Clamp(pitchDeg / maxPitchDeg, -1f, 1f);
- 
-        	Debug.Log($"[MPUInput] Parsed Pitch: {pitchDeg}°, Roll: {rollDeg}° => Input (H={horizontalInput}, V={verticalInput})");
- 
-        	if (car != null)
-            	car.SetInput(horizontalInput, verticalInput);
-        	else
-            	Debug.LogWarning("[MPUInput] Car reference not assigned!");
-    	}
-    	catch (System.Exception ex)
-    	{
-        	Debug.LogError("[MPUInput] Parse error: " + ex.Message);
-    	}
+		s = s.Trim();
+		if (!s.StartsWith("$") || !s.EndsWith("#")) return;
+
+		int rStart = s.IndexOf('R');
+		int yStart = s.IndexOf('Y');
+		if (rStart < 0 || yStart < 0) return;
+
+		int rollVal  = int.Parse(s.Substring(rStart+1, yStart-rStart-1));
+		float rollDeg = rollVal / 100f;
+
+		float horizontal = Mathf.Clamp(rollDeg / maxRollDeg, -1f, 1f);
+		car.SetInput(horizontal, 0f);     // 忽略垂直
 	}
  
 	void OnApplicationQuit()

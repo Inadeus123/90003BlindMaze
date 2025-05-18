@@ -26,16 +26,20 @@ public class FlyingCarController : MonoBehaviour
  
 	void FixedUpdate()
 	{
-    	Vector3 movement = transform.forward * forwardSpeed +
-                       	transform.right * horInput * horizontalSpeed +
-                       	transform.up * verInput * verticalSpeed;
- 
-    	rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
- 
-    	float bank = -horInput * 20f;
-    	float pitch = -verInput * 15f;
-    	Quaternion tilt = Quaternion.Euler(pitch, 0f, bank);
-    	rb.MoveRotation(Quaternion.Slerp(rb.rotation, tilt, 4f * Time.fixedDeltaTime));
+		// 只用 horInput
+		Vector3 movement = transform.forward * forwardSpeed
+		                   + transform.right  * horInput * horizontalSpeed;
+
+		Vector3 newPos = rb.position + movement * Time.fixedDeltaTime;
+		newPos.x = Mathf.Clamp(newPos.x, -8f, 8f);   // 保证不飞出车道
+		rb.MovePosition(newPos);
+
+		// 仅做左右滚动视觉
+		float bank = -horInput * 20f;
+		rb.MoveRotation(
+			Quaternion.Slerp(rb.rotation,
+				Quaternion.Euler(0f, 0f, bank),
+				4f * Time.fixedDeltaTime));
 	}
 }
 
