@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3599222441592606661}
   - component: {fileID: 3239945328925421257}
   - component: {fileID: 2456275405547935160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_01_Door_Top_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6184749348207646697}
   - component: {fileID: 5378129785967813004}
   - component: {fileID: 6686176080648591544}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_01_Door_Bottom_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 980037023342609110}
   - component: {fileID: -8052040148845107356}
   - component: {fileID: 4973170234730132004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_01
   m_TagString: Car
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 2146555778618696698}
   - component: {fileID: 345583959091040205}
   - component: {fileID: 4524286246506184808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_01_Screen_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 932958627587827355}
   - component: {fileID: 2522682159055232872}
   - component: {fileID: 14401693275867273}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_01_Bench_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

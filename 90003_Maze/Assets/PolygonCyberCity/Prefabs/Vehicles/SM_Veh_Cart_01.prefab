@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 270121927465380295}
   - component: {fileID: 8303250326274431713}
   - component: {fileID: 1539437795366283081}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Cart_01_Drone_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -4457155692805174206}
   - component: {fileID: 1725549727821975090}
   - component: {fileID: -3281699812803931221}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Cart_01
   m_TagString: Car
   m_Icon: {fileID: 0}

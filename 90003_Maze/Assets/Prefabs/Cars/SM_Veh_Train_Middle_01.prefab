@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3143982480559593815}
   - component: {fileID: 5807365272544319489}
   - component: {fileID: 8119290134770120959}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Middle_01_Glass_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7988427485176576992}
   - component: {fileID: 4217524237980962525}
   - component: {fileID: 9142834433830051581}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Middle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,8 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c41bbeea09eabe4badff47bb2b2cf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 10
+  moveDir: {x: 0, y: 0, z: 1}
 --- !u!1 &3167442566350534799
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +221,7 @@ GameObject:
   - component: {fileID: 43710151970794896}
   - component: {fileID: 5952421007957370754}
   - component: {fileID: 5678904190804361633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Middle_01_L_Ramp_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +304,7 @@ GameObject:
   - component: {fileID: 5455124720485880294}
   - component: {fileID: 3518502183638784424}
   - component: {fileID: 8475160211247145595}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Middle_01_R_Ramp_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +388,7 @@ GameObject:
   - component: {fileID: 7790090814307233064}
   - component: {fileID: 7259562686434612332}
   - component: {fileID: 6775462140394555822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Middle_01_R_Door_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +493,7 @@ GameObject:
   - component: {fileID: 8417967566298671278}
   - component: {fileID: 8958226865432736856}
   - component: {fileID: 8272817026732317998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Middle_01_R_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +598,7 @@ GameObject:
   - component: {fileID: 8013124387697652298}
   - component: {fileID: 3305132325970958926}
   - component: {fileID: 2044761160639904789}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Middle_01_L_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,7 +703,7 @@ GameObject:
   - component: {fileID: 2911487740267019332}
   - component: {fileID: 1681516171952649294}
   - component: {fileID: 3803355879953678788}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Middle_01_L_Door_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

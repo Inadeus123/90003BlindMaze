@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -289281588102475985}
   - component: {fileID: -7295313039096660756}
   - component: {fileID: -8490758033426199777}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_02
   m_TagString: Car
   m_Icon: {fileID: 0}

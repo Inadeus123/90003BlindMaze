@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2290673600254497427}
   - component: {fileID: 5778284713596515732}
   - component: {fileID: 878122092668035223}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_03_Arm_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3883355506853151952}
   - component: {fileID: 4801809046930399921}
   - component: {fileID: -1479008896454385201}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_03
   m_TagString: Car
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 3955108653796010348}
   - component: {fileID: 7735635458287301038}
   - component: {fileID: 4811635442033045290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_03_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

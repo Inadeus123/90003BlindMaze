@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5588682958469961916}
   - component: {fileID: 7805748298406502113}
   - component: {fileID: -6354610509778375632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Hover_Pads_01
   m_TagString: Car
   m_Icon: {fileID: 0}

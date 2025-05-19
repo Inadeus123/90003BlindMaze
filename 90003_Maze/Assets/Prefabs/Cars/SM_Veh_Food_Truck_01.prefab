@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3217689158960191114}
   - component: {fileID: 8179715715716558540}
   - component: {fileID: 7960605199878249923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Glass_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 9078806187742888285}
   - component: {fileID: 6495116015845116550}
   - component: {fileID: 2136871902997432620}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,8 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c41bbeea09eabe4badff47bb2b2cf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 10
+  moveDir: {x: 0, y: 0, z: 1}
 --- !u!1 &3278900829140962676
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +221,7 @@ GameObject:
   - component: {fileID: 1573548663818011415}
   - component: {fileID: 2158416654382733221}
   - component: {fileID: 5675964413342761019}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Door_R_Glass_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +304,7 @@ GameObject:
   - component: {fileID: 644557298363018874}
   - component: {fileID: 3918527002408189130}
   - component: {fileID: 2507695129214174898}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Ramp_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +387,7 @@ GameObject:
   - component: {fileID: 5819147339649413968}
   - component: {fileID: 8020824223533172513}
   - component: {fileID: 5154769031257750605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Steering_Wheel_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +470,7 @@ GameObject:
   - component: {fileID: 1255582319333219635}
   - component: {fileID: 6378709753488007110}
   - component: {fileID: 7001807760056518044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Door_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +554,7 @@ GameObject:
   - component: {fileID: 6275988223513562223}
   - component: {fileID: 7506387364351371029}
   - component: {fileID: 2269036079124883262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Counter_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +637,7 @@ GameObject:
   - component: {fileID: 4077820588207285804}
   - component: {fileID: 5736700737615470171}
   - component: {fileID: 3674439208688485707}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Oven_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +720,7 @@ GameObject:
   - component: {fileID: 6970085410305033973}
   - component: {fileID: 5841196605069196057}
   - component: {fileID: 8172978780299315923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Door_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +804,7 @@ GameObject:
   - component: {fileID: 2235954199393648870}
   - component: {fileID: 4894243385162860762}
   - component: {fileID: 3636360895724909999}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Door_L_Glass_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8177628449200572208}
   - component: {fileID: 6687009624368606809}
   - component: {fileID: 7051964222030812180}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,5 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c41bbeea09eabe4badff47bb2b2cf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 10
+  moveDir: {x: 0, y: 0, z: 1}

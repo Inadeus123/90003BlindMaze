@@ -54,6 +54,7 @@ public class CarTrailSpawn : MonoBehaviour
 
         GameObject prefab = spawnCars[Random.Range(0, spawnCars.Count)];
         GameObject car = Instantiate(prefab, spawnPos, Quaternion.identity);
+        //car.gameObject.transform.parent = transform;
         car.tag = "Car";
         CarMover mover = car.GetComponent<CarMover>();
         if (mover != null)

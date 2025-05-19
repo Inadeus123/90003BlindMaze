@@ -11,6 +11,7 @@ public class FlyingCarController : MonoBehaviour
 	private float verInput;
  
 	private Rigidbody rb;
+	public bool inputLocked { get; set; } = false; 
  
 	void Awake()
 	{
@@ -19,13 +20,15 @@ public class FlyingCarController : MonoBehaviour
  
 	public void SetInput(float hor, float ver)
 	{
+		if (inputLocked) return;
     	horInput = hor;
     	verInput = ver;
-    	Debug.Log($"[FlyingCarController] SetInput => hor: {horInput}, ver: {verInput}");
+    	//Debug.Log($"[FlyingCarController] SetInput => hor: {horInput}, ver: {verInput}");
 	}
  
 	void FixedUpdate()
 	{
+		//Debug.Log(rb.velocity);
 		// 只用 horInput
 		Vector3 movement = transform.forward * forwardSpeed
 		                   + transform.right  * horInput * horizontalSpeed;
@@ -36,9 +39,10 @@ public class FlyingCarController : MonoBehaviour
 
 		// 仅做左右滚动视觉
 		float bank = -horInput * 20f;
+		float yaw = rb.rotation.eulerAngles.y;
 		rb.MoveRotation(
 			Quaternion.Slerp(rb.rotation,
-				Quaternion.Euler(0f, 0f, bank),
+				Quaternion.Euler(0f, yaw, bank),
 				4f * Time.fixedDeltaTime));
 	}
 }

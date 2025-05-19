@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6374107655258145581}
   - component: {fileID: 6897215815233555964}
   - component: {fileID: 6718496944054128190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Trailer_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,8 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c41bbeea09eabe4badff47bb2b2cf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 10
+  moveDir: {x: 0, y: 0, z: 1}
 --- !u!1 &4547499699543179472
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +132,7 @@ GameObject:
   - component: {fileID: 3844818975514306519}
   - component: {fileID: 3277059727388311562}
   - component: {fileID: 8600030080320530536}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Trailer_01_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

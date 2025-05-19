@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7864717591118648500}
   - component: {fileID: 5262257000356887929}
   - component: {fileID: 2951118156958507426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Trailer_01_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7044668789644724083}
   - component: {fileID: -8281733292581950538}
   - component: {fileID: 436501687979780614}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Trailer_01
   m_TagString: Car
   m_Icon: {fileID: 0}

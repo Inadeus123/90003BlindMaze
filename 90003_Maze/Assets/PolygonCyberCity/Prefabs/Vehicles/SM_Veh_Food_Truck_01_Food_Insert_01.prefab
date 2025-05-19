@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8401920399123358933}
   - component: {fileID: 3386345776653373666}
   - component: {fileID: 1046861241429305295}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Food_Truck_01_Food_Insert_01
   m_TagString: Car
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1096484116739242983}
   - component: {fileID: 2921477970260706017}
   - component: {fileID: 645298434816334843}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_DoorL_Window_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3398130863042523708}
   - component: {fileID: 7726849503180755337}
   - component: {fileID: 6236703200148476283}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_RearSeats_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 6770554326058403796}
   - component: {fileID: 8633701462523730692}
   - component: {fileID: 5855699440936824518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_Glass_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 2156752863994225177}
   - component: {fileID: 6806847085519306871}
   - component: {fileID: 4887332040285787793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_SteeringWheel_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 2576371562615537736}
   - component: {fileID: 611430332995611638}
   - component: {fileID: 5769748324408690050}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_RearDoorR_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 4508506744566015521}
   - component: {fileID: 6018955237288200444}
   - component: {fileID: 3519906313362292336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_Bullbar_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 3055042937273335785}
   - component: {fileID: 2489563787937587815}
   - component: {fileID: 3340141870701584896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_DoorR_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 779263533619189644}
   - component: {fileID: 7501742224869979405}
   - component: {fileID: 3725112746250913347}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_RearDoorL_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 8330714521657902309}
   - component: {fileID: 412196382118803740}
   - component: {fileID: 7191046274240980556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_Satellite_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 8889663344521504358}
   - component: {fileID: 6565865030777159556}
   - component: {fileID: 5375707765097018968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_PoliceLights_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -845,7 +845,7 @@ GameObject:
   - component: {fileID: 5940396484898823226}
   - component: {fileID: 4282614090983702713}
   - component: {fileID: 375290200128274082}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_Antenna_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 3455014467508814905}
   - component: {fileID: 6246244465212456684}
   - component: {fileID: 8907579020017042346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_RearDoorL_Window_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1011,7 +1011,7 @@ GameObject:
   - component: {fileID: 4464958556414528530}
   - component: {fileID: 1507258576692703357}
   - component: {fileID: 1788595213936267146}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_Satellite_Fins_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 7873304455946281367}
   - component: {fileID: 2794310294746949914}
   - component: {fileID: 1111395567319728386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_TaxiSIgn_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,7 +1177,7 @@ GameObject:
   - component: {fileID: 2577179383172943652}
   - component: {fileID: 8939658561528356693}
   - component: {fileID: 5874202461622877183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_DoorR_Window_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,7 +1260,7 @@ GameObject:
   - component: {fileID: 5472322084262399553}
   - component: {fileID: 1875514622223408170}
   - component: {fileID: 7720322400098770226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_DoorL_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1344,7 +1344,7 @@ GameObject:
   - component: {fileID: 2054670801273883799}
   - component: {fileID: 5989840884010723129}
   - component: {fileID: 7625130862374381831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_FastFoodSign_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1428,7 +1428,7 @@ GameObject:
   - component: {fileID: 1694247240665097135}
   - component: {fileID: 1037811783508666621}
   - component: {fileID: 420357991401384019}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_FrontWindow_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1511,7 +1511,7 @@ GameObject:
   - component: {fileID: 2153415323740603037}
   - component: {fileID: 6254445243891647569}
   - component: {fileID: 6600497787062004160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_Spoiler_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1596,7 +1596,7 @@ GameObject:
   - component: {fileID: 1176602509497662143}
   - component: {fileID: 4310193657279552776}
   - component: {fileID: 5630223594121084158}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,8 +1717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c41bbeea09eabe4badff47bb2b2cf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 10
+  moveDir: {x: 0, y: 0, z: 1}
 --- !u!1 &8342788488052458307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1729,7 @@ GameObject:
   - component: {fileID: 7809904861489786573}
   - component: {fileID: 681907317643270817}
   - component: {fileID: 6024011925968903638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_FastFood_Flames_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1813,7 +1812,7 @@ GameObject:
   - component: {fileID: 1628715790303804965}
   - component: {fileID: 8934457840120548309}
   - component: {fileID: 6425498957546695124}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_SUV_01_RearDoorR_Window_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

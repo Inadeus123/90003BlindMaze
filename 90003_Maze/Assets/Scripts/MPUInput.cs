@@ -34,13 +34,11 @@ public class MPUInput : MonoBehaviour
 	void Update()
 	{
 		if (sp == null || !sp.IsOpen) return;
-
-		// ① 循环把缓冲区全部读完，只留下最后一行
 		string latestLine = null;
 		while (sp.BytesToRead > 0)
 		{
 			try      { latestLine = sp.ReadLine(); }
-			catch    { break; }      // 超时也跳出
+			catch    { break; }  
 		}
 		if (string.IsNullOrEmpty(latestLine)) return;
 

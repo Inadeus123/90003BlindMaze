@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7057883375180546477}
   - component: {fileID: 6910962465908128421}
   - component: {fileID: 1080781286615789228}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01_L_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7504143389242956630}
   - component: {fileID: 6461304691043466426}
   - component: {fileID: 2705356799644486778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01_R_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5052676359361842300}
   - component: {fileID: 7749755792706263462}
   - component: {fileID: 6137382738375995813}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01_Glass_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 3139924895288729941}
   - component: {fileID: 8294963812059227759}
   - component: {fileID: 7064786426594337799}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01_L_Ramp_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 2842555924946379996}
   - component: {fileID: 4856779559902942647}
   - component: {fileID: 6176256534509061631}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01_Hologram_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: -4433091291474710055}
   - component: {fileID: -6631463204847146099}
   - component: {fileID: 8784164272644553250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01
   m_TagString: Car
   m_Icon: {fileID: 0}
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 7767974091690128441}
   - component: {fileID: 4728537090545872530}
   - component: {fileID: 3604694317217733709}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01_Monitor_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 7833230807877715691}
   - component: {fileID: 1003906820421532842}
   - component: {fileID: 8076061519832010775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01_R_Ramp_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 2104706864933644016}
   - component: {fileID: 8467641593015517349}
   - component: {fileID: 7778996474966051882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01_Hologram_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 2399983507596421074}
   - component: {fileID: 5347440328094742145}
   - component: {fileID: 2656883222972467946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Train_Cockpit_01_Billboard_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

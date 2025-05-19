@@ -46,6 +46,7 @@ public class WallDetector : MonoBehaviour
 
         if (hitWall && !isInflating)
         {
+            Debug.Log("Hit Car: " + hit.distance);
             SendCommand('I');                   // 命令充气
             isInflating = true;
         }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 801137271431477558}
   - component: {fileID: 7360548977967855178}
   - component: {fileID: 6194484969938820803}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Door_L_Glass_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 574624071029531311}
   - component: {fileID: 4133940302862498763}
   - component: {fileID: 5094422231731719076}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Door_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 6646291780445663250}
   - component: {fileID: 8699678737970437958}
   - component: {fileID: 1928888572011820485}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Wheel_Front_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 4559018321173741981}
   - component: {fileID: 8572199108051933770}
   - component: {fileID: 4872805530713869527}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Wheel_Mid_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 1383436961475758732}
   - component: {fileID: 4860764419751111172}
   - component: {fileID: 328103984697241122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,8 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c41bbeea09eabe4badff47bb2b2cf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 10
+  moveDir: {x: 0, y: 0, z: 1}
 --- !u!1 &6176312819385407271
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +474,7 @@ GameObject:
   - component: {fileID: 4537235380489260941}
   - component: {fileID: 7813047350663685678}
   - component: {fileID: 581970646262246480}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Wheel_Back_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +557,7 @@ GameObject:
   - component: {fileID: 679801358844416412}
   - component: {fileID: 8012919988398510165}
   - component: {fileID: 188121313800242600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Steering_Wheel_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +640,7 @@ GameObject:
   - component: {fileID: 306841991569770767}
   - component: {fileID: 7276772522554218624}
   - component: {fileID: 3640359995253204878}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Wheel_Back_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +723,7 @@ GameObject:
   - component: {fileID: 115078378142197703}
   - component: {fileID: 1151077472431917110}
   - component: {fileID: 730927866569411033}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Wheel_Front_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -807,7 +806,7 @@ GameObject:
   - component: {fileID: 3362089577396314582}
   - component: {fileID: 7752479546537396264}
   - component: {fileID: 5854934810649996639}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Glass_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,7 +889,7 @@ GameObject:
   - component: {fileID: 1444022848858628984}
   - component: {fileID: 1113402232245136251}
   - component: {fileID: 2616467425862395728}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Wheel_Mid_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -973,7 +972,7 @@ GameObject:
   - component: {fileID: 3952461128380162922}
   - component: {fileID: 653419705386541365}
   - component: {fileID: 7916500824592832940}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Door_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1057,7 +1056,7 @@ GameObject:
   - component: {fileID: 1957654891369720368}
   - component: {fileID: 8129263673882365174}
   - component: {fileID: 5998494730605640464}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Door_R_Glass_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

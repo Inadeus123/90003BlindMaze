@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6819756376538248223}
   - component: {fileID: 3275761704667937397}
   - component: {fileID: 6661400245454466855}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_03_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1980526421372385974}
   - component: {fileID: 5487270874543412767}
   - component: {fileID: 7346846332735341394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_03_Arm_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 999939075795618410}
   - component: {fileID: 768720431803210412}
   - component: {fileID: 7179637684994925483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_Truck_01_Module_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,5 +287,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c41bbeea09eabe4badff47bb2b2cf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 10
+  moveDir: {x: 0, y: 0, z: 1}
