@@ -6,10 +6,12 @@ public class EnvironmentTp : MonoBehaviour
 {
     public GameObject flyingCar; 
     public AudioSource audioSource; 
-    public TextMeshProUGUI storyTextUI; 
+    public TextMeshProUGUI storyTextUI;
+    public Canvas storyCanvas; 
 
-    private float countdown = 30f;
+    private float countdown = 40f;
     private bool hasTeleported = false;
+
     private string fullStory =
         "This is the final frame.\n" +
         "I failed.\n\n" +
@@ -38,7 +40,13 @@ public class EnvironmentTp : MonoBehaviour
         {
             storyTextUI.text = "";
             storyTextUI.alignment = TextAlignmentOptions.TopLeft;
-            storyTextUI.fontSize /= 2f;
+            storyTextUI.fontSize *= 0.5f;
+
+            TMP_FontAsset sciFiFont = Resources.Load<TMP_FontAsset>("Fonts/Orbitron-VariableFont_wght SDF"); 
+            if (sciFiFont != null)
+            {
+                storyTextUI.font = sciFiFont;
+            }
         }
     }
 
@@ -50,9 +58,13 @@ public class EnvironmentTp : MonoBehaviour
 
             if (countdown <= 0f && flyingCar != null)
             {
-                // Vector3 carBackward = flyingCar.transform.forward * 433.9f;
+                // Vector3 carBackward = -flyingCar.transform.forward * 433.9f;
                 // transform.position = flyingCar.transform.position + carBackward;
                 hasTeleported = true;
+
+                // Hide UI
+                if (storyCanvas != null)
+                    storyCanvas.enabled = false;
             }
         }
 
@@ -75,10 +87,11 @@ public class EnvironmentTp : MonoBehaviour
             GUIStyle style = new GUIStyle();
             style.fontSize = 24;
             style.normal.textColor = Color.yellow;
+            style.fontStyle = FontStyle.BoldAndItalic;
             style.alignment = TextAnchor.UpperCenter;
 
             GUI.Label(
-                new Rect(Screen.width / 2 - 150, 30, 300, 50),
+                new Rect(Screen.width / 2 - 200, 30, 400, 50),
                 $"Holding on... {Mathf.CeilToInt(countdown)}s Left to Win a Pack of Snack!",
                 style
             );
